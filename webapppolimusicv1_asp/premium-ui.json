@@ -1,0 +1,11 @@
+{
+  "profile": "product-admin",
+  "sourceRoots": ["."],
+  "locale": "es-EC",
+  "canonicalMap": "UX-CONTRACT.md",
+  "requiredCapabilities": ["Select/Listbox", "Form", "Scrollbar", "Toast", "CRUD"],
+  "ownership": {"Select/Listbox": "native"},
+  "requiredCommands": [],
+  "commands": {},
+  "evidence": {"crudFullFlow": "admin.asp", "failurePaths": "login.asp"}
+}
