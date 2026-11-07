@@ -1,0 +1,334 @@
+﻿
+<%@ Master Language="C#" AutoEventWireup="true"
+    CodeBehind="Site.master.cs"
+    Inherits="WebAppPoliMusicV3.SiteMaster" %>
+
+<!DOCTYPE html>
+<html lang="es">
+<head runat="server">
+    <meta http-equiv="Content-Type"
+          content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0" />
+
+    <title><%: Page.Title %> - PoliMusic - Priscila.Pazmino</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <webopt:bundlereference
+        runat="server"
+        path="~/Content/css" />
+
+    <link href="~/favicon.ico"
+          rel="shortcut icon"
+          type="image/x-icon" />
+
+    <style>
+        :root {
+            --pm-green: #1DB954;
+            --pm-green-light: #1ed760;
+            --pm-black: #121212;
+            --pm-card: #181818;
+            --pm-text: #ffffff;
+            --pm-muted: #b3b3b3;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--pm-black) !important;
+            color: var(--pm-text) !important;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        .pm-navbar {
+            background: #101010 !important;
+            border-bottom: 1px solid #282828;
+            padding: 18px 0;
+            box-shadow: 0 4px 22px rgba(0,0,0,0.3);
+        }
+
+        .pm-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: #ffffff !important;
+            text-decoration: none;
+        }
+
+        .pm-logo:hover {
+            color: #ffffff !important;
+        }
+
+        .pm-logo-icon {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 55px;
+            height: 55px;
+            background: var(--pm-green);
+            color: #101010;
+            border-radius: 50%;
+            font-size: 30px;
+        }
+
+        .pm-brand-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.3;
+        }
+
+        .pm-brand-title {
+            color: #ffffff;
+            font-size: 30px;
+            font-weight: 800;
+        }
+
+        .pm-navbar .pm-owner {
+            color: #1DB954 !important;
+            font-size: 22px !important;
+            font-weight: 800 !important;
+            letter-spacing: 0.4px;
+            margin-top: 5px;
+        }
+
+        .pm-navbar .nav-link {
+            color: #b3b3b3 !important;
+            font-size: 15px;
+            font-weight: 600;
+            padding: 10px 15px !important;
+            border-radius: 9px;
+            margin-left: 3px;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .pm-navbar .nav-link:hover,
+        .pm-navbar .nav-link:focus {
+            color: var(--pm-green-light) !important;
+            background: #232323;
+        }
+
+        .pm-navbar .pm-logout {
+            border: 1px solid #454545;
+            border-radius: 22px;
+            padding: 9px 17px !important;
+        }
+
+        .pm-navbar .pm-logout:hover {
+            border-color: var(--pm-green);
+        }
+
+        .pm-navbar .navbar-toggler {
+            border: 1px solid #444;
+        }
+
+        .pm-content {
+            min-height: calc(100vh - 200px);
+            padding-top: 25px;
+            padding-bottom: 45px;
+        }
+
+        .pm-content h1,
+        .pm-content h2,
+        .pm-content h3,
+        .pm-content h4 {
+            color: #ffffff;
+            font-weight: 750;
+        }
+
+        .pm-footer {
+            padding: 25px 0;
+            border-top: 1px solid #292929;
+            color: #989898;
+            font-size: 13px;
+        }
+
+        .pm-footer strong {
+            color: var(--pm-green);
+        }
+
+        .pm-footer p {
+            margin: 0;
+        }
+
+        .pm-footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        @media (max-width: 767px) {
+            .pm-navbar .nav-link {
+                margin: 4px 0;
+            }
+
+            .pm-brand-title {
+                font-size: 24px;
+            }
+
+            .pm-navbar .pm-owner {
+                font-size: 18px !important;
+            }
+
+            .pm-content {
+                padding-top: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <form id="form1" runat="server">
+
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="WebForms.js"
+                    Assembly="System.Web"
+                    Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js"
+                    Assembly="System.Web"
+                    Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js"
+                    Assembly="System.Web"
+                    Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js"
+                    Assembly="System.Web"
+                    Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js"
+                    Assembly="System.Web"
+                    Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js"
+                    Assembly="System.Web"
+                    Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js"
+                    Assembly="System.Web"
+                    Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js"
+                    Assembly="System.Web"
+                    Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+            </Scripts>
+        </asp:ScriptManager>
+
+        <nav class="navbar navbar-expand-lg navbar-dark pm-navbar">
+            <div class="container">
+
+                <a class="navbar-brand pm-logo"
+                   runat="server"
+                   href="~/">
+
+                    <span class="pm-logo-icon">&#9835;</span>
+
+                    <span class="pm-brand-text">
+                        <span class="pm-brand-title">PoliMusic</span>
+                        <span class="pm-owner d-block">
+                            Priscila.Pazmino
+                        </span>
+                    </span>
+                </a>
+
+                <button class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#pmMenu"
+                        aria-controls="pmMenu"
+                        aria-expanded="false"
+                        aria-label="Mostrar menu">
+
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse"
+                     id="pmMenu">
+
+                    <ul class="navbar-nav ms-auto align-items-lg-center">
+
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               runat="server"
+                               href="~/">
+                                Inicio
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               runat="server"
+                               href="~/Song">
+                                &#9835; Canciones
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               runat="server"
+                               href="~/About">
+                                Acerca de
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               runat="server"
+                               href="~/Contact">
+                                Contacto
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link pm-logout"
+                               runat="server"
+                               href="~/Logout">
+                                Cerrar Sesión
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <main class="container pm-content">
+
+            <asp:ContentPlaceHolder
+                ID="MainContent"
+                runat="server">
+            </asp:ContentPlaceHolder>
+
+        </main>
+
+        <footer class="pm-footer">
+            <div class="container pm-footer-inner">
+
+                <p>
+                    &copy; <%: DateTime.Now.Year %>
+                    <strong>PoliMusic</strong>
+                    - Priscila.Pazmino
+                </p>
+
+                <p>
+                    &#9835; Tu música, tu estilo.
+                </p>
+
+            </div>
+        </footer>
+
+    </form>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/Scripts/bootstrap.js") %>
+    </asp:PlaceHolder>
+
+</body>
+</html>
